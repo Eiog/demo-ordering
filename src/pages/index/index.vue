@@ -65,7 +65,7 @@
         </view>
 
         <view class="w-full h-20 flex items-center gap-3 mt-5">
-          <view class="h-full shadow-md shadow-gray-500 rounded-md flex-1 p-3"
+          <view class="h-full shadow-md shadow-gray-200 rounded-md flex-1 p-3"
           v-for="(item, index) in 3" :key="index"
           >
             <view class="w-full flex items-center justify-center">
