@@ -14,4 +14,7 @@ onHide(() => {
 page{
   height: 100%;
 }
+view{
+  box-sizing: border-box;
+}
 </style>

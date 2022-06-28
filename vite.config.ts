@@ -9,7 +9,7 @@ import { presetUno, presetAttributify, presetIcons } from 'unocss'
 import VueSetupExtend from 'vite-plugin-vue-setup-extend'
 import { viteMockServe } from 'vite-plugin-mock'
 import { viteCommonjs } from '@originjs/vite-plugin-commonjs'
-
+import Icons from 'unplugin-icons/vite'
 // https://vitejs.dev/config/
 export default defineConfig(({ command, mode }) => {
   const useMock = mode==='mock'
@@ -50,6 +50,7 @@ export default defineConfig(({ command, mode }) => {
           setupProdMockServer();
         `
     }),
+    Icons({ compiler: 'vue3', autoInstall: true }),
     viteCommonjs(),
     uni(),
     Unocss(),
