@@ -5,8 +5,57 @@
 			"style": {
 				"navigationStyle": "custom"
 			}
-		}
+		},
+		{
+			"path": "pages/ordering/index",
+			"style": {
+				"navigationStyle": "default",
+				"navigationBarTitleText": "点餐"
+			}
+		},
+		{
+			"path": "pages/order/index",
+			"style": {
+				"navigationStyle": "default",
+				"navigationBarTitleText": "订单"
+			}
+		},
+		{
+			"path": "pages/mine/index",
+			"style": {
+				"navigationStyle": "default",
+				"navigationBarTitleText": "我的"
+			}
+		},
 	],
+	"tabBar": {
+		"backgroundColor": "#fff",
+		"color": "#888",
+		"selectedColor": "#333",
+		"list": [
+			{
+				"pagePath": "pages/index/index",
+				"text": "首页",
+				"iconPath": "static/image/1.png"
+				
+			},
+			{
+				"pagePath": "pages/ordering/index",
+				"text": "点餐",
+				"iconPath": "static/image/2.png"
+			},
+			{
+				"pagePath": "pages/order/index",
+				"text": "订单",
+				"iconPath": "static/image/3.png"
+			},
+			{
+				"pagePath": "pages/mine/index",
+				"text": "我的",
+				"iconPath": "static/image/4.png"
+			}
+		]
+	},
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "uni-app",
