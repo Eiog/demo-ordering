@@ -46,6 +46,15 @@
             "sdkConfigs" : {}
         }
     },
+    "h5": {
+        "sdkConfigs": {
+            "maps":{
+                "qqmap":{
+                    "key":"GD4BZ-73BKU-7DDV2-B24YY-WOHX3-YTFBJ"
+                }
+            }
+        }
+    },
     /* 快应用特有相关 */
     "quickapp" : {},
     /* 小程序特有相关 */
@@ -54,7 +63,12 @@
         "setting" : {
             "urlCheck" : false
         },
-        "usingComponents" : true
+        "usingComponents" : true,
+        "permission": {
+            "scope.userLocation":{
+                "desc":"定位"
+            }
+        }
     },
     "mp-alipay" : {
         "usingComponents" : true

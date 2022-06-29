@@ -29,14 +29,14 @@ export default defineConfig(({ command, mode }) => {
         { "@dcloudio/uni-app": ["onLaunch", "onShow", "onHide"] },
       ],
       dirs: ["src/hooks", "src/store", "src/utils", "src/api"],
-      dts: "src/auto-import.d.ts",
+      dts: "src/typings/auto-import.d.ts",
     }),
     Components({
       /* options */
       dirs: ["src/components"],
       extensions: ["vue"],
       deep: true,
-      dts: "src/components.d.ts",
+      dts: "src/typings/components.d.ts",
       resolvers: [],
     }),
     viteMockServe({

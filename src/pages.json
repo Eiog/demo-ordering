@@ -10,7 +10,7 @@
 			"path": "pages/ordering/index",
 			"style": {
 				"navigationStyle": "default",
-				"navigationBarTitleText": "点餐"
+				"navigationBarTitleText": "门店列表"
 			}
 		},
 		{

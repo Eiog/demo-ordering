@@ -18,7 +18,10 @@ specifiers:
   '@dcloudio/uni-quickapp-webview': 3.0.0-alpha-3040820220424001
   '@dcloudio/uni-ui': ^1.4.16
   '@dcloudio/vite-plugin-uni': 3.0.0-alpha-3040820220424001
+  '@iconify-json/bx': ^1.1.3
+  '@iconify-json/ic': ^1.1.6
   '@iconify-json/majesticons': ^1.1.2
+  '@iconify-json/ri': ^1.1.2
   '@originjs/vite-plugin-commonjs': ^1.0.3
   '@types/mockjs': ^1.0.6
   '@types/node': ^18.0.0
@@ -68,7 +71,10 @@ devDependencies:
   '@dcloudio/uni-automator': 3.0.0-alpha-3040820220424001_vue@3.2.37
   '@dcloudio/uni-cli-shared': 3.0.0-alpha-3040820220424001_vue@3.2.37
   '@dcloudio/vite-plugin-uni': 3.0.0-alpha-3040820220424001_vite@2.9.13+vue@3.2.37
+  '@iconify-json/bx': 1.1.3
+  '@iconify-json/ic': 1.1.6
   '@iconify-json/majesticons': 1.1.2
+  '@iconify-json/ri': 1.1.2
   '@originjs/vite-plugin-commonjs': 1.0.3
   '@types/mockjs': 1.0.6
   '@types/node': 18.0.0
@@ -828,8 +834,26 @@ packages:
       - vue
     dev: true
 
+  /@iconify-json/bx/1.1.3:
+    resolution: {integrity: sha512-Y7iKbjsf52fGd0IIjtUz8Hoz4S5PyXxRJRqskQFnDPSOUD0zRIbDom3UfTv5HGv8I0zEvJ0jpEVQlt+efkve/g==}
+    dependencies:
+      '@iconify/types': 1.1.0
+    dev: true
+
+  /@iconify-json/ic/1.1.6:
+    resolution: {integrity: sha512-l5wTHkRBPXoZa9kB/KXgbd5NH9oNh3fxTU936mwSHm60HEN8PvbSHxAuEUmF9RsLOLoDE9loZCc3RBO5RzrxCg==}
+    dependencies:
+      '@iconify/types': 1.1.0
+    dev: true
+
   /@iconify-json/majesticons/1.1.2:
     resolution: {integrity: sha512-z9uxWFst9vWRvPAptgrTSAwCCABw/EPQWQ/5OlQkWxikTxHWHuusdcpdW2zWGMIACb5yhpMuKMfkHh+texZ3KQ==}
+    dependencies:
+      '@iconify/types': 1.1.0
+    dev: true
+
+  /@iconify-json/ri/1.1.2:
+    resolution: {integrity: sha512-qLlDrpkxJi+aUxY2xipKC08aI2seaxFsrEWC3Wm5WJxTtZco+G8SUBpzNpQaKzjN4IwpzcZv8T37Q3aREXDk/A==}
     dependencies:
       '@iconify/types': 1.1.0
     dev: true
