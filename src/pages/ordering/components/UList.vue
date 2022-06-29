@@ -1,10 +1,18 @@
-<script setup lang="ts" name="UList"></script>
+<script setup lang="ts" name="UList">
+import { Events, ref } from 'vue';
+const popupShow = ref(false)
+function maskClose(e:any){
+  if(e.target.id!='mask') return
+  popupShow.value = false
+}
+</script>
 <template>
   <view class="w-full flex flex-col gap-2 px-3">
     <view
       class="w-full h-28 flex items-center bg-white rounded-lg shadow shadow-md shadow-gray-100"
       v-for="(item, index) in 5"
       :key="index"
+      @click="popupShow = true"
     >
       <view class="flex-1 flex flex-col gap-0.5 items-start pl-3">
         <text class="font-bold">蜜雪冰城(乐园店)</text>
@@ -29,6 +37,35 @@
             class="w-8 h-8 flex items-center justify-center bg-gray-200 rounded-full"
           >
             <text class="i-ic-round-local-phone text-xl text-red-600"></text>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view id="mask" class="fixed left-0 top-0 w-full h-full bg-black bg-opacity-20 backdrop-blur-md animate-fade-in animate-duration-300"
+    v-if="popupShow"
+     @click="maskClose($event)"
+    >
+      <view class="z-10 fixed left-0 bottom-0 w-full h-102 flex flex-col gap-2 rounded-2xl shadow shadow-md shadow-light-200 bg-white overflow-hidden">
+        <view class="w-full h-14 flex items-center px-3 bg-red-50 text-red-700">
+          <text>公告</text>
+        </view>
+        <view class="w-full flex-1 flex flex-col gap-2 px-3">
+          <view class="w-full flex items-center">
+            <view class="flex-1 flex flex-col gap-1">
+              <text class="font-bold">蜜雪冰城（乐园店）</text>
+              <text class="text-sm">乐园就222号</text>
+            </view>
+            <view class="">
+              <text>距离400m</text>
+            </view>
+          </view>
+          <view class="w-full h-46 rounded-md bg-gray-100">
+
+          </view>
+          <view class="w-full h-10 flex items-center justify-center text-white bg-red-500 rounded-md ">
+            <navigator url="/pages/shop/index">
+            去点单
+            </navigator>
           </view>
         </view>
       </view>
