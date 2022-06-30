@@ -23,7 +23,7 @@
       </swiper>
       </uni-swiper-dot>
     </view>
-    <view class="w-full px-3 translate-y-6 ">
+    <view class="w-full flex flex-col gap-2 px-3 -translate-y-6 ">
       <view
         class="w-full h-20 flex items-center gap-3 px-3 bg-white shadow shadow-md shadow-gray-200 rounded-xl"
       >

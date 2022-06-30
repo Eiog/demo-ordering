@@ -1,8 +1,11 @@
 <script setup lang='ts' name='Search'>
+function goBack(){
+    uni.navigateBack()
+}
 </script>
 <template>
 <view class="w-full h-full flex items-center gap-2">
-    <text class="i-ic-round-keyboard-arrow-left text-2xl">  </text>
+    <text class="i-ic-round-keyboard-arrow-left text-2xl" @click="goBack">  </text>
     <view class="flex-1 flex items-center ">
         <view class="w-full h-8 bg-gray-100 rounded-md flex items-center gap-1 px-2">
             <text class="i-carbon-search"></text>
