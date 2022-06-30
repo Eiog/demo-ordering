@@ -3,6 +3,7 @@ import { ref,computed } from "vue";
 import Search from "./components/Search.vue";
 import ShopInfo from "./components/ShopInfo.vue";
 import UTabs from "@/components/common/UTabs/index.vue";
+import GoodsList from "./components/GoodsList.vue";
 const index = ref(0);
 const tabData = ref<any>([
   
@@ -87,7 +88,7 @@ console.log(currentData.value);
       <ShopInfo />
     </view>
     <view class="flex-1 w-full flex flex-shrink-0 min-h-0 bg-gray-100">
-      <view class="w-40 bg-gray-50">
+      <view class="w-30 bg-gray-50">
         <u-tabs
           vertical
           :data="tabData"
@@ -95,8 +96,8 @@ console.log(currentData.value);
           @on-change="onChange"
         />
       </view>
-      <view class="flex-1 bg-white">
-        {{currentData}}
+      <view class="flex-1 bg-white px-2">
+        <goods-list :data="currentData.data" />
       </view>
     </view>
   </view>
