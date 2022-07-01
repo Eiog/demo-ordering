@@ -61,6 +61,7 @@
     "@iconify-json/carbon": "^1.1.6",
     "@iconify-json/ic": "^1.1.6",
     "@iconify-json/majesticons": "^1.1.2",
+    "@iconify-json/ph": "^1.1.1",
     "@iconify-json/ri": "^1.1.2",
     "@originjs/vite-plugin-commonjs": "^1.0.3",
     "@types/mockjs": "^1.0.6",

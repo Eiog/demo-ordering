@@ -15,12 +15,12 @@ type Props = {
 type Emit = {
     (e:'scrolltoupper',data:Data):Data
     (e:'scrolltolower',data:Data):Data
+    (e:'onSelect',data:Data):Data
 }
 const props = defineProps<Props>();
 const emit= defineEmits<Emit>()
-function scrolltolower(e){
+function scrolltolower(e:any){
     console.log(e);
-    
 }
 </script>
 <template>
@@ -59,6 +59,7 @@ function scrolltolower(e){
               </view>
               <view
                 class="w-6 h-6 flex items-center justify-center rounded-full bg-red-600 text-white leading-normal text-xl"
+                @click="emit('onSelect',item)"
                 >
                 <text class="i-ic-round-plus"></text>
                 </view
@@ -68,7 +69,6 @@ function scrolltolower(e){
         </view>
       </view>
     </scroll-view>
-    
   </view>
 </template>
 <style scoped lang="less"></style>
