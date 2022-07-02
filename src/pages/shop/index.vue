@@ -5,7 +5,7 @@ import ShopInfo from "./components/ShopInfo.vue";
 import UTabs from "@/components/common/UTabs/index.vue";
 import GoodsList from "./components/GoodsList.vue";
 import SkuSelect from "./components/SkuSelect.vue";
-import UTransition from "@/components/common/Transition.vue";
+
 const index = ref(0);
 const tabData = ref<any>([]);
 function onChange(data: any) {}
@@ -138,9 +138,7 @@ function onSelect(data: any) {
           >去结算</view
         >
       </view>
-        <UTransition :show="selectShow" >
-          <view class="w-20 h-20 bg-red-500"></view>
-        </UTransition>
+        
     </view>
   </view>
 </template>

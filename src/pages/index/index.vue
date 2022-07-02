@@ -97,9 +97,7 @@ const swiperUrl = [
 ];
 const appStore = useAppStore();
 const title = ref("Hello World");
-http.get("/demo").then((res) => {
-  console.log(res);
-});
+
 </script>
 
 <style></style>
