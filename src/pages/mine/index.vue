@@ -2,6 +2,7 @@
 import { ref } from "vue";
 import UTransition from "@/components/common/UTransition.vue";
 import UPopup from "@/components/common/UPopup.vue";
+import Dialog from 'firstui-uni/firstui/fui-dialog/fui-dialog.vue'
 const show = ref(false)
 function onClose(){
     show.value = false
@@ -9,8 +10,9 @@ function onClose(){
 </script>
 <template>
     <button @click="show = !show">显示</button>
-  <UPopup :show="show" @on-close="onClose">
+  <!-- <UPopup :show="show" mode="bottom" @on-close="onClose">
     <view class="w-20 h-20 bg-gray-100 flex items-center justify-center">关闭</view>
-  </UPopup>
+  </UPopup> -->
+  <Dialog :show="show" @close="show = !show"></Dialog>
 </template>
 <style></style>

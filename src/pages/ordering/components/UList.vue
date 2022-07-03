@@ -1,5 +1,6 @@
 <script setup lang="ts" name="UList">
-import { Events, ref } from "vue";
+import { ref } from "vue";
+import BottomPopup from '@/components/common/fui-bottom-popup.vue'
 const popupShow = ref(false);
 function maskClose(e: any) {
   if (e.target.id != "mask") return;
@@ -45,16 +46,9 @@ function goShop(){
         </view>
       </view>
     </view>
-    <view
-      id="mask"
-      class="fixed left-0 top-0 w-full h-full bg-black bg-opacity-20 backdrop-blur-md animate-fade-in animate-duration-300"
-      v-if="popupShow"
-      @click="maskClose($event)"
-    >
-      <view
-        class="z-10 fixed left-0 bottom-0 w-full h-102 flex flex-col gap-2 rounded-2xl shadow shadow-md shadow-light-200 bg-white overflow-hidden"
-      >
-        <view class="w-full h-14 flex items-center px-3 bg-red-50 text-red-700">
+    <BottomPopup :show="popupShow" @close="popupShow = !popupShow">
+    <view>
+      <view class="w-full h-14 flex items-center px-3 bg-red-50 text-red-700">
           <text>公告</text>
         </view>
         <view class="w-full flex-1 flex flex-col gap-2 px-3">
@@ -75,8 +69,8 @@ function goShop(){
               去点单
             </view>
         </view>
-      </view>
     </view>
+    </BottomPopup>
   </view>
 </template>
 <style scoped lang="less"></style>

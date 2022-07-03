@@ -29,6 +29,7 @@ specifiers:
   '@types/node': ^18.0.0
   '@vueuse/core': ^8.7.5
   '@zebra-ui/swiper': ^2.2.1
+  firstui-uni: ^1.6.1
   mockjs: ^1.1.0
   path: ^0.12.7
   pinia: ^2.0.14
@@ -63,6 +64,7 @@ dependencies:
   '@dcloudio/uni-ui': 1.4.16
   '@vueuse/core': 8.7.5_vue@3.2.37
   '@zebra-ui/swiper': 2.2.1
+  firstui-uni: 1.6.1
   path: 0.12.7
   pinia: 2.0.14_j6bzmzd4ujpabbp5objtwxyjp4
   vue: 3.2.37
@@ -2189,6 +2191,10 @@ packages:
       locate-path: 6.0.0
       path-exists: 4.0.0
     dev: true
+
+  /firstui-uni/1.6.1:
+    resolution: {integrity: sha512-2tWqTHhArRS6bfpFGiM5wshYsGThF1/Q7WXEv1nDpEO316yLO6yeoinMg/HUMiuFjWwvVbZJNw8ixTTgR3ZddQ==}
+    dev: false
 
   /forwarded/0.2.0:
     resolution: {integrity: sha512-buRG0fpBtRHSTCOASe6hD258tEubFoRLb4ZNA6NxMVHNw2gOcwHo9wyablzMzOA5z9xA9L1KNjk/Nt6MT9aYow==}

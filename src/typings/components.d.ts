@@ -5,6 +5,7 @@ import '@vue/runtime-core'
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
+    FuiBottomPopup: typeof import('./../components/common/fui-bottom-popup.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     UPopup: typeof import('./../components/common/UPopup.vue')['default']

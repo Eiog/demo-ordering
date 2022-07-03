@@ -47,6 +47,7 @@
     "@dcloudio/uni-ui": "^1.4.16",
     "@vueuse/core": "^8.7.5",
     "@zebra-ui/swiper": "^2.2.1",
+    "firstui-uni": "^1.6.1",
     "path": "^0.12.7",
     "pinia": "^2.0.14",
     "vue": "^3.2.37",

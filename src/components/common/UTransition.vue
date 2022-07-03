@@ -47,17 +47,19 @@ watch(
   },
   { immediate: true }
 );
-function onClick(){
+function onClick(e:any){
+  if(e.target.id!='transition')return
   emit('onClick')
 }
 </script>
 <template>
   <view
+  id="transition"
     class="transition"
     :style="{...defaultStyle,...props.viewStyle}"
     :class="bandClass"
     v-if="viewShow"
-    @click.stop="onClick()"
+    @click="onClick($event)"
   >
    <slot></slot>
   </view>
@@ -74,6 +76,16 @@ function onClick(){
 .fade {
   visibility: hidden;
   opacity: 0;
+}
+.fade-up {
+  visibility: hidden;
+  opacity: 0;
+  transform: translateY(20px);
+}
+.fade-down {
+  visibility: hidden;
+  opacity: 0;
+  transform: translateY(-20px);
 }
 .zoom {
   visibility: hidden;

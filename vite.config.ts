@@ -73,7 +73,7 @@ export default defineConfig(({ command, mode }) => {
       strictPort: true, // 如果端口已占用直接退出
       proxy: {
         '/api': {
-          target: 'http://127.0.0.1:4523/m1/1199247-0-default/api/',
+          target: 'https://mock.apifox.cn/m1/1199247-0-default/',
           changeOrigin: true,
           rewrite: path => path.replace(/^\/api/, '')
         }

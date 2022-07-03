@@ -5,96 +5,37 @@ import ShopInfo from "./components/ShopInfo.vue";
 import UTabs from "@/components/common/UTabs/index.vue";
 import GoodsList from "./components/GoodsList.vue";
 import SkuSelect from "./components/SkuSelect.vue";
-
+import {shopApi} from '@/api'
 const index = ref(0);
 const tabData = ref<any>([]);
 function onChange(data: any) {}
-const shopData = {
-  id: 10001,
-  name: "蜜雪冰城（乐园店）",
-  location: {
-    longitude: 11,
-    latitude: 22,
-  },
-  notice: [],
-  goods: [
-    {
-      id: 1,
-      classify: "限时特惠",
-      data: [
-        {
-          id: 101,
-          name: "满杯百香果",
-          subtitle: "果茶",
-          cover: "",
-          oldPrice: 13,
-          price: 12,
-          tag: ["限时特价"],
-          sku: [
-            {
-              name: "温度",
-              select: [
-                {
-                  id: 1001,
-                  name: "正常",
-                },
-                {
-                  id: 1002,
-                  name: "少冰",
-                },
-                {
-                  id: 1003,
-                  name: "常温",
-                },
-              ],
-            },
-          ],
-        },
-      ],
-    },
-    {
-      id: 2,
-      classify: "冰淇淋",
-      data: [
-        {
-          id: 201,
-          name: "雪王大圣代",
-          subtitle: "黑珍珠",
-          cover: "",
-          oldPrice: 6,
-          price: 6,
-          tag: ["限时特价"],
-        },
-        {
-          id: 201,
-          name: "雪王大圣代（芒果）",
-          subtitle: "芒果肉",
-          cover: "",
-          oldPrice: 6,
-          price: 6,
-          tag: ["限时特价"],
-        },
-      ],
-    },
-  ],
-};
+function getShopData(){
+  shopApi.find(1000).then((res:any)=>{
+    console.log(res);
+    shopData.value = res.data
+    fomartData();
+  })
+}
+getShopData()
+const shopData = ref<Shop.ShopData>()
 function fomartData() {
-  shopData.goods.forEach((item) => {
+  shopData.value?.goods.forEach((item) => {
     tabData.value.push({
       key: item.id,
       label: item.classify,
     });
   });
 }
-fomartData();
+
 const currentData = computed(() => {
-  return shopData.goods[index.value];
+  return shopData.value?.goods[index.value];
 });
-console.log(currentData.value);
 const selectShow = ref(false);
-function onSelect(data: any) {
+function onSelect(data:Shop.GoodData) {
+  skuSelectData.value = data
   selectShow.value = true;
 }
+const skuSelectData = ref<Shop.GoodData>()
 </script>
 <template>
   <view class="w-full h-full flex flex-col relative">
@@ -117,7 +58,7 @@ function onSelect(data: any) {
         />
       </view>
       <view class="flex-1 bg-white px-2">
-        <goods-list :data="currentData.data" @on-select="onSelect" />
+        <goods-list :data="currentData?.data" @on-select="onSelect" />
       </view>
       <view
         class="absolute left-0 bottom-0 w-full h-16 px-4 flex items-center gap-3 border-t border-t-gray-100 bg-white"
@@ -138,7 +79,7 @@ function onSelect(data: any) {
           >去结算</view
         >
       </view>
-        
+          <SkuSelect v-if="selectShow" @on-close="selectShow = false" :data="skuSelectData"></SkuSelect>
     </view>
   </view>
 </template>

@@ -1,21 +1,13 @@
 <script setup lang="ts" name="GoodsList">
 import { ref } from "vue";
-type Data = {
-  id: number;
-  name: string;
-  subtitle: string;
-  cover: string;
-  oldPrice: number;
-  price: number;
-  tag: string[];
-};
+
 type Props = {
-  data: Data[];
+  data?: Shop.GoodData[];
 };
 type Emit = {
-    (e:'scrolltoupper',data:Data):Data
-    (e:'scrolltolower',data:Data):Data
-    (e:'onSelect',data:Data):Data
+    (e:'scrolltoupper',data:Shop.GoodData):Shop.GoodData
+    (e:'scrolltolower',data:Shop.GoodData):Shop.GoodData
+    (e:'onSelect',data:Shop.GoodData):Shop.GoodData
 }
 const props = defineProps<Props>();
 const emit= defineEmits<Emit>()
