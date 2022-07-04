@@ -14,6 +14,7 @@ const emit= defineEmits<Emit>()
 function scrolltolower(e:any){
     console.log(e);
 }
+
 </script>
 <template>
   <view class="w-full h-full">

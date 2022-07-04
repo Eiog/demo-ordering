@@ -47,4 +47,9 @@ declare namespace Shop {
             longitude:number
         }
     }
+    type ShopCard = {
+        shop:GoodData
+        sku:Sku['data']
+        count:number
+    }
 }

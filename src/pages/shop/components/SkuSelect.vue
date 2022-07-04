@@ -47,7 +47,8 @@ function handleAddCard(){
   if(selectedSku.value.length!=props.data?.sku.length) return
   shopStore.setCard({
     shop:props.data,
-    sku:selectedSku.value
+    sku:selectedSku.value,
+    count:1
   })
 }
 </script>
@@ -94,8 +95,9 @@ function handleAddCard(){
           </view>
         </view>
         <view class="flex items-center mt-2 border-t border-t-gray-100 pt-2">
-          <view class="flex-1">
-            <text class="font-bold text-xl">5</text>
+          <view class="flex-1 flex items-baseline gap-2">
+            <text class="font-bold text-xl">{{props.data?.price}}</text>
+            <text class="text-base text-gray-500 line-through">{{props.data?.oldPrice}}</text>
           </view>
           <view
             class="px-2 py-1 bg-red-600 rounded-md text-white leading-normal"
