@@ -1,27 +1,32 @@
 <script setup lang="ts" name="UList">
 import { ref } from "vue";
 import BottomPopup from '@/components/common/fui-bottom-popup.vue'
+import UPopup from "./UPopup.vue";
+type Props = {
+  data?:Shop.ShopList[]
+}
+const props = defineProps<Props>()
 const popupShow = ref(false);
-function maskClose(e: any) {
-  if (e.target.id != "mask") return;
+function popupOnClose(e: any) {
   popupShow.value = false;
 }
-function goShop(){
-  uni.navigateTo({url:'/pages/shop/index'})
-  popupShow.value = false
+const currentShop = ref<Shop.ShopList>()
+function handleShopClick(item:Shop.ShopList){
+  currentShop.value = item
+  popupShow.value = true
 }
 </script>
 <template>
   <view class="w-full flex flex-col gap-2 px-3">
     <view
       class="w-full h-28 flex items-center bg-white rounded-lg shadow shadow-md shadow-gray-100"
-      v-for="(item, index) in 5"
+      v-for="(item, index) in props.data"
       :key="index"
-      @click="popupShow = true"
+      @click="handleShopClick(item)"
     >
       <view class="flex-1 flex flex-col gap-0.5 items-start pl-3">
-        <text class="font-bold">蜜雪冰城(乐园店)</text>
-        <text class="text-sm text-gray-500">乐园就222号</text>
+        <text class="font-bold">{{item.name}}</text>
+        <text class="text-sm text-gray-500">{{item.addr}}</text>
         <text class="text-sm text-gray-500">营业时间22-22</text>
         <view class="px-1 py-0.5 bg-red-700 rounded-sm text-white text-xs"
           >营业中</view
@@ -46,31 +51,7 @@ function goShop(){
         </view>
       </view>
     </view>
-    <BottomPopup :show="popupShow" @close="popupShow = !popupShow">
-    <view>
-      <view class="w-full h-14 flex items-center px-3 bg-red-50 text-red-700">
-          <text>公告</text>
-        </view>
-        <view class="w-full flex-1 flex flex-col gap-2 px-3">
-          <view class="w-full flex items-center">
-            <view class="flex-1 flex flex-col gap-1">
-              <text class="font-bold">蜜雪冰城（乐园店）</text>
-              <text class="text-sm">乐园就222号</text>
-            </view>
-            <view class="">
-              <text>距离400m</text>
-            </view>
-          </view>
-          <view class="w-full h-46 rounded-md bg-gray-100"> </view>
-            <view
-              class="w-full h-10 flex items-center justify-center text-white bg-red-500 rounded-md"
-              @click="goShop"
-            >
-              去点单
-            </view>
-        </view>
-    </view>
-    </BottomPopup>
+    <UPopup :data="currentShop" :show="popupShow" @on-close="popupOnClose" />
   </view>
 </template>
 <style scoped lang="less"></style>

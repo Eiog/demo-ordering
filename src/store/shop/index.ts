@@ -5,7 +5,9 @@ export const useShopStore = defineStore({
         card:[]
     }),
     actions: {
-
+        setCard(data:any){
+            this.card.push(data)
+        }
     },
     getters: {
 

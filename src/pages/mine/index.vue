@@ -13,6 +13,5 @@ function onClose(){
   <!-- <UPopup :show="show" mode="bottom" @on-close="onClose">
     <view class="w-20 h-20 bg-gray-100 flex items-center justify-center">关闭</view>
   </UPopup> -->
-  <Dialog :show="show" @close="show = !show"></Dialog>
 </template>
 <style></style>

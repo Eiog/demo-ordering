@@ -34,4 +34,17 @@ declare namespace Shop {
         notice: string
         goods: Goods[]
     }
+    type ShopList = {
+        id:string
+        name:string
+        notice:string
+        addr:string
+        time:string
+        status:number
+        phone:number
+        location:{
+            latitude:number
+            longitude:number
+        }
+    }
 }

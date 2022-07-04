@@ -1,10 +1,12 @@
 <script setup lang="ts" name="SkuSelect">
+import {useShopStore} from '@/store'
 type Props = {
   data?: Shop.GoodData;
 };
 type Emit = {
   (e: "onClose"): void;
 };
+const shopStore = useShopStore()
 const props = defineProps<Props>();
 const emit = defineEmits<Emit>();
 const skuData = ref<Shop.Sku[]>(initSkuData(props.data!.sku))
@@ -30,27 +32,24 @@ function handlerClick(index:any,sku_index:any,checked?:boolean,disabled?:boolean
     skuData.value[index].data.forEach(item=>item.checked = false)
     skuData.value[index].data[sku_index].checked = true
 }
-type SkuSelect = {
-    skuId:number
-    skuItem:{
-        id:number
-        name:string
-    }
-}
-const skuSelect = computed(()=>{
-    let data:any[] = []
-    skuData.value.forEach(item=>{
-        item.data.forEach(it=>{
-            if(it.checked){
-                data.push(it)
-            }
-        })
+const selectedSku = computed(()=>{
+  let data:any[] = []
+  skuData.value.forEach(item=>{
+    item.data.forEach(_item=>{
+      if(_item.checked){
+        data.push(_item)
+      }
     })
-    return data
+  })
+  return data
 })
-const skuSelectIndex = computed(()=>{
-    
-})
+function handleAddCard(){
+  if(selectedSku.value.length!=props.data?.sku.length) return
+  shopStore.setCard({
+    shop:props.data,
+    sku:selectedSku.value
+  })
+}
 </script>
 <template>
   <view
@@ -100,6 +99,7 @@ const skuSelectIndex = computed(()=>{
           </view>
           <view
             class="px-2 py-1 bg-red-600 rounded-md text-white leading-normal"
+            @click="handleAddCard"
             >加入购物车</view
           >
         </view>
