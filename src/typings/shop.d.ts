@@ -1,15 +1,15 @@
-declare namespace Shop {
+declare namespace SHOP {
     type Sku = {
-        id:number
-        name:string
-        data:{
-            id:number
-            name:string
-            checked?:boolean
-            disabled?:boolean
+        id: number
+        name: string
+        items: {
+            id: number
+            name: string
+            checked?: boolean
+            disabled?: boolean
         }[]
     }
-    type GoodData = {
+    type Goods = {
         id: number
         name: string
         subtitle: string
@@ -17,39 +17,42 @@ declare namespace Shop {
         price: number
         oldPrice: number
         tag: string[]
-        sku:Sku[]
+        sku: Sku[]
+        selected?: boolean
+        selectCount?: number
     }
-    type Goods = {
-        id: number
-        classify: string
-        data: GoodData[]
-    }
-    type ShopData = {
+    type GoodsClassify = {
         id: number
         name: string
+        goods: Goods[]
+        selected?: boolean
+        selectCount?: number
+    }
+    type ShopInfo = {
+        id: number
+        name: string
+        notice: string
+        addr: string
+        time: string
+        status: number
+        phone: number
         location: {
             longitude: number
             latitude: number
         },
-        notice: string
-        goods: Goods[]
     }
-    type ShopList = {
-        id:string
-        name:string
-        notice:string
-        addr:string
-        time:string
-        status:number
-        phone:number
-        location:{
-            latitude:number
-            longitude:number
-        }
+    type Shop = {
+        info: ShopInfo
+        goodsClassify: GoodsClassify[]
     }
-    type ShopCard = {
-        shop:GoodData
-        sku:Sku['data']
-        count:number
+    type ShopCart = {
+        shop: ShopInfo
+        goodsClassify: GoodsClassify
+        goods: Goods
+        sku: Sku['items']
+        count: number
+    }
+    type SelectedSku = {
+        
     }
 }

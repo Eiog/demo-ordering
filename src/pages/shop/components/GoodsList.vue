@@ -2,12 +2,10 @@
 import { ref } from "vue";
 
 type Props = {
-  data?: Shop.GoodData[];
+  data?: SHOP.Goods[];
 };
 type Emit = {
-    (e:'scrolltoupper',data:Shop.GoodData):Shop.GoodData
-    (e:'scrolltolower',data:Shop.GoodData):Shop.GoodData
-    (e:'onSelect',data:Shop.GoodData):Shop.GoodData
+    (e:'onSelect',data:SHOP.Goods):SHOP.Goods
 }
 const props = defineProps<Props>();
 const emit= defineEmits<Emit>()
@@ -19,31 +17,31 @@ function scrolltolower(e:any){
 <template>
   <view class="w-full h-full">
     <scroll-view scroll-y class="w-full h-full" :scroll-with-animation="true" @scrolltoupper="" @scrolltolower="scrolltolower">
-      <view>
+      <view class="w-full flex flex-col min-w-0">
         <view
-          class="flex items-center gap-1 p-1"
+          class="w-full flex items-center gap-1 p-1 min-w-0"
           v-for="(item, index) in props.data"
           :key="index"
         >
           <view class="w-20 h-20 rounded-md overflow-hidden bg-gray-100">
             <image class="w-full h-full" :src="item.cover" mode="aspectFill" />
           </view>
-          <view class="flex-1 flex flex-col">
+          <view class="flex-1 flex flex-col min-w-0">
             <text class="font-bold">{{ item.name }}</text>
             <text class="text-xs text-gray-500 mb-auto">{{
               item.subtitle
             }}</text>
-            <view class="w-full flex items-center">
-              <view class="flex-1 flex flex-col">
+            <view class=" flex items-center flex-1 min-w-0 ">
+              <view class="flex-1 flex flex-col min-w-0">
                 <view class="flex items-baseline gap-1">
                   <text class="text-xl text-red-600">{{ item.price }}</text>
                   <text class="text-gray-500 line-through">{{
                     item.oldPrice
                   }}</text>
                 </view>
-                <view class="flex items-center">
+                <view class="flex items-center gap-1">
                   <text
-                    class="text-xs text-red-600 leading-none"
+                    class="text-xs text-red-600 leading-none truncate"
                     v-for="(_item, index) in item.tag"
                     :key="index"
                     >{{ _item }}</text

@@ -1,5 +1,6 @@
 <script setup lang="ts" name="Shop">
 import { ref, computed } from "vue";
+import { useShopStore } from "@/store";
 import Search from "./components/Search.vue";
 import ShopInfo from "./components/ShopInfo.vue";
 import UTabs from "@/components/common/UTabs/index.vue";
@@ -7,43 +8,47 @@ import GoodsList from "./components/GoodsList.vue";
 import SkuSelect from "./components/SkuSelect.vue";
 import ShopCard from "./components/ShopCard.vue";
 import { shopApi } from "@/api";
+const shopStore = useShopStore()
 const index = ref(0);
 const tabData = ref<any[]>([]);
 function onChange(data: any) {}
 function getShopData() {
   shopApi.find(1000).then((res: any) => {
-    console.log(res);
     shopData.value = res.data;
     fomartData();
   });
 }
 getShopData();
-const shopData = ref<Shop.ShopData>();
+const shopData = ref<SHOP.Shop>();
+
 function fomartData() {
-  shopData.value?.goods.forEach((item) => {
+  shopData.value?.goodsClassify.forEach((item) => {
     tabData.value.push({
       key: item.id,
-      label: item.classify,
+      label: item.name,
     });
   });
 }
 
 const currentData = computed(() => {
-  return shopData.value?.goods[index.value];
+  return shopData.value?.goodsClassify[index.value];
 });
 const selectShow = ref(false);
-function onSelect(data: Shop.GoodData) {
+function onSelect(data: SHOP.Goods) {
   skuSelectData.value = data;
   selectShow.value = true;
 }
-const skuSelectData = ref<Shop.GoodData>();
-
-const classifyIsSelects = computed(()=>{
-  let selects = []
-  tabData.value.filter(item=>{
-    
-  })
-})
+const skuSelectData = ref<SHOP.Goods>();
+function handleSkuChecked(data:SHOP.Sku['items']){
+  let shopCart:SHOP.ShopCart = {
+    shop:shopData.value?.info!,
+    goodsClassify:currentData.value!,
+    goods:skuSelectData.value!,
+    sku:data,
+    count:1
+  }
+  shopStore.setCart(shopCart)
+}
 </script>
 <template>
   <view class="w-full h-full flex flex-col relative">
@@ -54,10 +59,10 @@ const classifyIsSelects = computed(()=>{
       <Search />
     </view>
     <view class="w-full h-20 px-2">
-      <ShopInfo />
+      <ShopInfo :data="shopData?.info" />
     </view>
     <view class="flex-1 w-full flex flex-shrink-0 min-h-0 bg-gray-100">
-      <view class="w-30 bg-gray-50">
+      <view class="w-30 flex-shrink-0 bg-gray-50">
         <u-tabs
           vertical
           :data="tabData"
@@ -65,13 +70,14 @@ const classifyIsSelects = computed(()=>{
           @on-change="onChange"
         />
       </view>
-      <view class="flex-1 bg-white px-2">
-        <goods-list :data="currentData?.data" @on-select="onSelect" />
+      <view class="flex-1 bg-white px-2 min-w-0">
+        <goods-list :data="currentData?.goods" @on-select="onSelect" />
       </view>
-      <ShopCard />
+      <ShopCard  />
       <SkuSelect
         v-if="selectShow"
         @on-close="selectShow = false"
+        @on-checked="handleSkuChecked"
         :data="skuSelectData"
       ></SkuSelect>
     </view>

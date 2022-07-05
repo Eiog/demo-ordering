@@ -1,24 +1,32 @@
 <script setup lang="ts" name="SkuSelect">
 import {useShopStore} from '@/store'
 type Props = {
-  data?: Shop.GoodData;
+  data?: SHOP.Goods;
 };
 type Emit = {
   (e: "onClose"): void;
+  (e:'onChecked',data:SHOP.Sku['items']):SHOP.Sku['items']
 };
 const shopStore = useShopStore()
 const props = defineProps<Props>();
 const emit = defineEmits<Emit>();
-const skuData = ref<Shop.Sku[]>(initSkuData(props.data!.sku))
-function initSkuData(skuData:Shop.Sku[]):Shop.Sku[]{
+
+const skuData = ref<SHOP.Sku[]>(initSkuData(props.data!.sku))
+
+function initSkuData(skuData:SHOP.Sku[]):SHOP.Sku[]{
     return skuData.map((item)=>{
-        item.data.map((it)=>{
+        item.items.map((it,index)=>{
+            if(index===0){
+              it.checked = true
+              it.disabled = false 
+            return it
+            }
             it.checked = false
             it.disabled = false 
             return it
         })
         return item
-    }) as unknown as Shop.Sku[]
+    }) as unknown as SHOP.Sku[]
 }
 function onClose(e: any) {
   if (e.target.id != "skuSelectWrap") return;
@@ -27,29 +35,23 @@ function onClose(e: any) {
 function handlerClick(index:any,sku_index:any,checked?:boolean,disabled?:boolean){
     if(disabled) return
     if(checked){
-        return skuData.value[index].data[sku_index].checked = false
+        return skuData.value[index].items[sku_index].checked = false
     }
-    skuData.value[index].data.forEach(item=>item.checked = false)
-    skuData.value[index].data[sku_index].checked = true
+    skuData.value[index].items.forEach(item=>item.checked = false)
+    skuData.value[index].items[sku_index].checked = true
 }
 const selectedSku = computed(()=>{
-  let data:any[] = []
-  skuData.value.forEach(item=>{
-    item.data.forEach(_item=>{
-      if(_item.checked){
-        data.push(_item)
-      }
+  let skus:SHOP.Sku['items'] = []
+  skuData.value.forEach(item => {
+    item.items.forEach(_item=>{
+      if(_item.checked) skus.push(_item)
     })
-  })
-  return data
+  });
+  return skus
 })
 function handleAddCard(){
   if(selectedSku.value.length!=props.data?.sku.length) return
-  shopStore.setCard({
-    shop:props.data,
-    sku:selectedSku.value,
-    count:1
-  })
+  emit('onChecked',selectedSku.value)
 }
 </script>
 <template>
@@ -85,7 +87,7 @@ function handleAddCard(){
           <view class="flex items-center flex-wrap gap-3">
             <view
               class="w-30% border border-gray-100 rounded-md text-sm flex items-center justify-center py-1"
-              v-for="(sku_item, sku_index) in item.data"
+              v-for="(sku_item, sku_index) in item.items"
               :key="sku_index"
                 :class="sku_item.checked?'bg-red-500 text-white':'',sku_item.disabled?'bg-grey-100':''"
               @click="handlerClick(index,sku_index,sku_item.checked,sku_item.disabled)"
