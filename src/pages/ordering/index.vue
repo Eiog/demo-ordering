@@ -4,10 +4,11 @@ import UTabs from "@/components/common/UTabs/index.vue";
 import UMap from "./components/UMap.vue";
 import UList from "./components/UList.vue";
 import { shopApi } from "@/api";
-const shopListData = ref<Shop.ShopList[]>();
+const shopListData = ref<SHOP.ShopInfo[]>();
 function getShopList() {
   shopApi.findList().then((res: any) => {
-    shopListData.value = res.data;
+    shopListData.value = res;
+    console.log(res);
   });
 }
 onMounted(() => {

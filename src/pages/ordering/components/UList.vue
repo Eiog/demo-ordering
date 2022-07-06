@@ -3,15 +3,18 @@ import { ref } from "vue";
 import BottomPopup from '@/components/common/fui-bottom-popup.vue'
 import UPopup from "./UPopup.vue";
 type Props = {
-  data?:Shop.ShopList[]
+  data?:SHOP.ShopInfo[]
 }
 const props = defineProps<Props>()
+
+console.log(props);
+
 const popupShow = ref(false);
 function popupOnClose(e: any) {
   popupShow.value = false;
 }
-const currentShop = ref<Shop.ShopList>()
-function handleShopClick(item:Shop.ShopList){
+const currentShop = ref<SHOP.ShopInfo>()
+function handleShopClick(item:SHOP.ShopInfo){
   currentShop.value = item
   popupShow.value = true
 }

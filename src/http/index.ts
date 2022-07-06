@@ -32,7 +32,7 @@ function request(url: string, data?: object | string | ArrayBuffer, method?: key
             data: data,
             method: method,
             ...option,
-            success: res => { return resolve(res) },
+            success: res => { return resolve(res.data) },
             fail: err => { return reject(err) }
         })
     })

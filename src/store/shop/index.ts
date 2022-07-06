@@ -2,11 +2,16 @@ import { defineStore } from "pinia";
 
 type State = {
     shopCart?: SHOP.ShopCart[]
+    goodsClassify?: SHOP.GoodsClassify[]
+    goods?: SHOP.Goods[]
+    shopInfo?: SHOP.ShopInfo
 }
 export const useShopStore = defineStore({
     id: 'shopStore',
     state: (): State => ({
-        shopCart: []
+        shopCart: [],
+        shopInfo: undefined,
+        goodsClassify: []
     }),
     actions: {
         setCart(data: SHOP.ShopCart) {
@@ -29,17 +34,17 @@ export const useShopStore = defineStore({
         }
     },
     getters: {
-        count(state){
+        count(state) {
             let count = 0
             for (const item of state.shopCart!) {
                 count += item.count
             }
             return count
         },
-        price(state){
+        price(state) {
             let price = 0
             for (const item of state.shopCart!) {
-                price += item.goods.price*item.count
+                price += item.goods.price * item.count
             }
             return price
         }
