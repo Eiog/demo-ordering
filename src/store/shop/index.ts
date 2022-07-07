@@ -34,6 +34,21 @@ export const useShopStore = defineStore({
         }
     },
     getters: {
+        _goodsClassify(state){
+            return state.goodsClassify?.map(item=>{
+                let count = 0
+                let isSelected = false
+                state.shopCart?.forEach(_item=>{
+                    if(_item.goodsClassify.id===item.id) {
+                        count +=_item.count
+                        isSelected = true
+                    }
+                })
+                item.selectCount = count
+                item.selected = isSelected
+                return item
+            })
+        },
         count(state) {
             let count = 0
             for (const item of state.shopCart!) {

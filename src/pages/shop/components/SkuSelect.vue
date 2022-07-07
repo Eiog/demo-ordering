@@ -32,7 +32,7 @@ function onClose(e: any) {
   if (e.target.id != "skuSelectWrap") return;
   emit("onClose");
 }
-function handlerClick(index:any,sku_index:any,checked?:boolean,disabled?:boolean){
+function handlerClick(index:number,sku_index:number,checked?:boolean,disabled?:boolean){
     if(disabled) return
     if(checked){
         return skuData.value[index].items[sku_index].checked = false

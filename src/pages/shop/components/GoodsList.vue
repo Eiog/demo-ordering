@@ -119,7 +119,7 @@ watch(currentIndex, (newValue) => {
           <text class="leading-none">{{ item.name }}</text>
         </view>
         <view
-          class="w-full h-28 flex items-center gap-1 p-1 min-w-0"
+          class="w-full min-h-28 flex items-start gap-1 p-1 min-w-0"
           v-for="(_item, _index) in item.goods"
           :key="_index"
         >
@@ -127,7 +127,7 @@ watch(currentIndex, (newValue) => {
             <image class="w-full h-full" :src="_item.cover" mode="aspectFill" />
           </view>
           <view class="flex-1 flex flex-col min-w-0">
-            <text class="font-bold">{{ item.name }}</text>
+            <text class="font-bold">{{ _item.name }}</text>
             <text class="text-xs text-gray-500 mb-auto">{{
               _item.subtitle
             }}</text>

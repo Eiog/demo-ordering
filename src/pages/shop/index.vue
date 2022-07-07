@@ -38,7 +38,16 @@ function onSelect(data: SHOP.Goods) {
   selectShow.value = true;
 }
 const skuSelectData = ref<SHOP.Goods>();
-function handleSkuChecked(data: SHOP.Sku["items"]) {}
+function handleSkuChecked(sku: SHOP.Sku["items"]) {
+  const data:SHOP.ShopCart = {
+    shop:shopStore.shopInfo!,
+    goodsClassify:shopStore.goodsClassify![tabIndex.value],
+    goods:skuSelectData.value!,
+    sku:sku,
+    count:1
+  }
+  shopStore.setCart(data)
+}
 const currentClassifyId = ref(0);
 const listIndex = ref(0)
 function tabsOnChange(data: any) {
