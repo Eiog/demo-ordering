@@ -31,6 +31,9 @@ export const useShopStore = defineStore({
             if (!isAdd) {
                 this.shopCart?.push(data)
             }
+        },
+        removeCart(){
+            
         }
     },
     getters: {
@@ -38,7 +41,7 @@ export const useShopStore = defineStore({
             return state.goodsClassify?.map(item=>{
                 let count = 0
                 let isSelected = false
-                state.shopCart?.forEach(_item=>{
+                state.shopCart?.forEach((_item,_index)=>{
                     if(_item.goodsClassify.id===item.id) {
                         count +=_item.count
                         isSelected = true
@@ -46,6 +49,19 @@ export const useShopStore = defineStore({
                 })
                 item.selectCount = count
                 item.selected = isSelected
+                item.goods.map(_item=>{
+                    let count = 0
+                    let isSelected = false
+                    state.shopCart?.forEach((__item,index)=>{
+                        if(_item.id===__item.goods.id){
+                            count +=state.shopCart![index].count
+                            isSelected = true
+                        }
+                    })
+                    _item.selectCount = count
+                    _item.selected = isSelected
+                    return _item
+                })
                 return item
             })
         },

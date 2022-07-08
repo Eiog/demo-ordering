@@ -97,7 +97,7 @@ onMounted(() => {
       :class="props.index === index ? 'bg-white' : ''"
       @click="onChange(item, index)"
     >
-      <view class="w-full h-full flex items-center gap-1">
+      <view class="w-full h-full flex items-center gap-1 relative">
         <view
           class="w-2 h-4 rounded-full opacity-0 scale-0 transition-all"
           :class="props.index === index ? '!opacity-100 !scale-100' : ''"
@@ -108,6 +108,9 @@ onMounted(() => {
           :style="props.index === index ? { color: props.color } : ''"
           >{{ item.name }}</text
         >
+        <view v-if="item.selected" class="absolute top-0 right-0 w-5 h-5 rounded-full bg-red-600 flex items-center justify-center">
+          <text class="text-sm text-white leading-none">{{item.selectCount}}</text>
+        </view>
       </view>
     </view>
   </scroll-view>

@@ -6,7 +6,7 @@ type Props = {
   index: number;
 };
 type Emit = {
-  (e: "onSelect", data: SHOP.Goods): SHOP.Goods;
+  (e: "onSelect", {classify,goods}:{classify:SHOP.GoodsClassify,goods:SHOP.Goods}): {classify:SHOP.GoodsClassify,goods:SHOP.Goods}
   (e: "update:index", index: number): number;
   (e: "onScroll", index: number): number;
 };
@@ -99,6 +99,14 @@ const currentIndex = ref(0);
 watch(currentIndex, (newValue) => {
   emit("onScroll", newValue);
 });
+
+function handleAdd(classify:SHOP.GoodsClassify,goods:SHOP.Goods){
+  emit('onSelect', {classify,goods})
+}
+function handleRemove(classify:SHOP.GoodsClassify,goods:SHOP.Goods){
+  emit('onSelect', {classify,goods})
+}
+
 </script>
 <template>
   <scroll-view
@@ -131,7 +139,7 @@ watch(currentIndex, (newValue) => {
             <text class="text-xs text-gray-500 mb-auto">{{
               _item.subtitle
             }}</text>
-            <view class="flex items-center flex-1 min-w-0">
+            <view class="flex items-start flex-1 min-w-0">
               <view class="flex-1 flex flex-col min-w-0">
                 <view class="flex items-baseline gap-1">
                   <text class="text-xl text-red-600">{{ _item.price }}</text>
@@ -149,10 +157,28 @@ watch(currentIndex, (newValue) => {
                 </view>
               </view>
               <view
-                class="w-6 h-6 flex items-center justify-center rounded-full bg-red-600 text-white leading-normal text-xl"
-                @click="emit('onSelect', _item)"
+                class="mt-1 flex items-center justify-center px-1 rounded-md bg-red-600 text-white leading-none"
+                @click="handleRemove(item,_item)"
+                v-if="!_item.selected"
               >
-                <text class="i-ic-round-plus"></text>
+                <text class="text-sm">选规格</text>
+              </view>
+              <view
+                class="flex items-center justify-center gap-1"
+                @click="handleAdd(item,_item)"
+                v-if="_item.selected"
+              >
+                <view class="w-5 h-5 rounded-full bg-white border border-red-600 flex items-center justify-center">
+                  <text class=" i-ic-round-minus text-red-600 text-xl"></text>
+                </view>
+                <view>
+                  <text>{{_item.selectCount}}</text>
+                </view>
+                <view class="w-5 h-5 rounded-full bg-red-600 flex items-center justify-center"
+                @click="handleAdd(item,_item)"
+                >
+                  <text class="i-ic-round-plus text-white text-xl"></text>
+                </view>
               </view>
             </view>
           </view>

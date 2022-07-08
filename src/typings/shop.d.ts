@@ -7,6 +7,8 @@ declare namespace SHOP {
             name: string
             checked?: boolean
             disabled?: boolean
+            selectCount?:number
+            selected?:boolean
         }[]
     }
     type Goods = {

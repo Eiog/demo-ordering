@@ -14,7 +14,7 @@ const tabIndex = ref(0);
 function getShopData() {
   shopApi.find(1000).then((res) => {
     shopStore.shopInfo = res.info;
-    shopStore.goodsClassify = fomartGoods(res.goodsClassify);
+    shopStore.goodsClassify = res.goodsClassify
   });
 }
 getShopData();
@@ -33,15 +33,17 @@ function fomartGoods(data: SHOP.GoodsClassify[]) {
 }
 
 const selectShow = ref(false);
-function onSelect(data: SHOP.Goods) {
-  skuSelectData.value = data;
+function onSelect({classify,goods}:{classify:SHOP.GoodsClassify,goods:SHOP.Goods}) {
+  skuSelectData.value = goods;
+  goodsClassify.value = classify
   selectShow.value = true;
 }
 const skuSelectData = ref<SHOP.Goods>();
+const goodsClassify = ref<SHOP.GoodsClassify>()
 function handleSkuChecked(sku: SHOP.Sku["items"]) {
   const data:SHOP.ShopCart = {
     shop:shopStore.shopInfo!,
-    goodsClassify:shopStore.goodsClassify![tabIndex.value],
+    goodsClassify:goodsClassify.value!,
     goods:skuSelectData.value!,
     sku:sku,
     count:1
@@ -71,14 +73,14 @@ function onListScroll(index:number){
     <view class="flex-1 w-full flex flex-shrink-0 min-h-0 bg-gray-100">
       <view class="w-30 flex-shrink-0 bg-gray-50">
         <Tabs
-          :data="shopStore.goodsClassify!"
+          :data="shopStore._goodsClassify!"
           :index="tabIndex"
           @on-change="tabsOnChange"
         />
       </view>
       <view class="flex-1 bg-white px-2 min-w-0">
         <goods-list
-          :data="shopStore.goodsClassify!"
+          :data="shopStore._goodsClassify!"
           :index="listIndex"
           @on-scroll="onListScroll"
           @on-select="onSelect"

@@ -1,45 +1,38 @@
 <script setup lang="ts" name="Map">
-import { ref } from "vue";
-const mapData = ref({
-  id: 1,
-  latitude: 39.909,
-  longitude: 116.39742,
-  markers: [
-    {
-      latitude: 39.909,
-      longitude: 116.39742,
-      iconPath: "/static/image/location.png",
-    },
-  ],
-});
-uni.getLocation({
-  type: "Wwgs84",
-  success: (res) => {
-    const data = {
-        id:1,
-        latitude:res.latitude,
-        longitude:res.longitude,
-        markers:[{
-            id:12,
-            latitude:res.latitude,
-            longitude:res.longitude,
-            iconPath: "/static/image/location.png",
-            width:20,
-            height:20
-        }]
-    }
-    mapData.value = data
-    
-  },
-});
+import { ref,onMounted,getCurrentInstance } from "vue";
+const $this = getCurrentInstance()
+const mapRef = ref<UniApp.MapContext>()
+const location = ref({longitude:0,latitude:0})
+function initMap(){
+  uni.getLocation({
+	type: 'wgs84',
+	success: (res)=> {
+		location.value = {longitude:res.latitude,latitude:res.latitude}
+	}
+  });
+  mapRef.value = uni.createMapContext("map",$this)
+  mapRef.value.getCenterLocation({
+    success:(res=>{
+      console.log(res);
+    })
+  })
+}
+function init(){
+  initMap()
+}
+onMounted(()=>{
+  init()
+})
 </script>
 <template>
   <view class="w-full h-60">
     <map
+      id="map"
+      ref="mapRef"
       class="w-full h-full"
-      :latitude="mapData.latitude"
-      :longitude="mapData.longitude"
-      :markers="mapData.markers"
+      :show-location="true"
+      :latitude="location.latitude"
+      :longitude="location.longitude"
     ></map>
   </view>
 </template>
