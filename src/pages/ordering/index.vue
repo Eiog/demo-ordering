@@ -8,9 +8,10 @@ const shopListData = ref<SHOP.ShopInfo[]>();
 function getShopList() {
   shopApi.findList().then((res: any) => {
     shopListData.value = res;
-    console.log(res);
+    // console.log(res);
   });
 }
+
 onMounted(() => {
   getShopList();
 });
@@ -26,7 +27,7 @@ const tabData = ref([
   },
 ]);
 function onChange(data: any) {
-  console.log(data);
+  // console.log(data);
 }
 const mapShow = ref(true);
 </script>

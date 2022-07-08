@@ -16,7 +16,9 @@
       "@/*": [
         "src/*"
       ]
-    }
+    },
+    "noImplicitAny": false,
+    
   },
   "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"]
 }

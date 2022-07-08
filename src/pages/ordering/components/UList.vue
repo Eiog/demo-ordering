@@ -7,7 +7,7 @@ type Props = {
 }
 const props = defineProps<Props>()
 
-console.log(props);
+// console.log(props);
 
 const popupShow = ref(false);
 function popupOnClose(e: any) {

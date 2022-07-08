@@ -1,38 +1,54 @@
-<script setup lang="ts" name="Map">
-import { ref,onMounted,getCurrentInstance } from "vue";
+<script setup lang="ts" name="UMap">
+import { ref, onMounted, getCurrentInstance } from "vue";
+import { onReady } from "@dcloudio/uni-app";
 const $this = getCurrentInstance()
-const mapRef = ref<UniApp.MapContext>()
-const location = ref({longitude:0,latitude:0})
-function initMap(){
-  uni.getLocation({
-	type: 'wgs84',
-	success: (res)=> {
-		location.value = {longitude:res.latitude,latitude:res.latitude}
-	}
+const mapRef = ref<UniApp.MapContext>();
+type Location = {
+  longitude: number;
+  latitude: number;
+};
+const location = ref<Location>({ longitude: 0, latitude: 0 });
+async function getLocation():Promise<Location>{
+  return new Promise((resolve, reject) => {
+    uni.getLocation({
+      type: "gcj02",
+      success: (res) => {
+        return resolve({ longitude: res.latitude, latitude: res.latitude });
+      },
+      fail:()=>{
+        return reject()
+      },
+      complete:()=>{
+        return reject()
+      }
+    });
   });
-  mapRef.value = uni.createMapContext("map",$this)
-  mapRef.value.getCenterLocation({
-    success:(res=>{
+}
+async function initMap() {
+  location.value = await getLocation()
+  const myMap = uni.createMapContext("my-map", $this)
+  myMap.getCenterLocation({
+    success:(res)=>{
       console.log(res);
-    })
+      
+    }
   })
 }
-function init(){
-  initMap()
+function init() {
+  initMap();
 }
-onMounted(()=>{
-  init()
-})
+onMounted(() => {
+  init();
+});
 </script>
 <template>
   <view class="w-full h-60">
     <map
-      id="map"
-      ref="mapRef"
+      id="my-map"
       class="w-full h-full"
       :show-location="true"
       :latitude="location.latitude"
-      :longitude="location.longitude"
+      :longitude="location.longitude" 
     ></map>
   </view>
 </template>

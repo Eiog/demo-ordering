@@ -1,5 +1,5 @@
-import { defineStore } from "pinia";
-
+import { defineStore,createPinia  } from "pinia";
+import { createPersistedState } from 'pinia-plugin-persistedstate'
 type State = {
     shopCart?: SHOP.ShopCart[]
     goodsClassify?: SHOP.GoodsClassify[]
@@ -8,6 +8,10 @@ type State = {
 }
 export const useShopStore = defineStore({
     id: 'shopStore',
+    persist: {
+        key: 'shopCart',
+        paths: ['shopCart']
+      },
     state: (): State => ({
         shopCart: [],
         shopInfo: undefined,

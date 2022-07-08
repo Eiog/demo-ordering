@@ -50,6 +50,7 @@
     "firstui-uni": "^1.6.1",
     "path": "^0.12.7",
     "pinia": "^2.0.14",
+    "pinia-plugin-persistedstate": "^1.6.1",
     "vue": "^3.2.37",
     "vue-i18n": "^9.1.9"
   },
