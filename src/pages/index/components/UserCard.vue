@@ -1,24 +1,7 @@
 <script setup lang="ts" name="UserCard">
 
 const handleLogin = ()=>{
-    uni.login({
-         provider: 'weixin',
-         success:res=>{
-            console.log(res);
-            
-         },
-         fail:err=>{
-            console.log(err);
-            
-         }
-    })
-    uni.getUserProfile({
-        desc:'测试',
-        success:res=>{
-            console.log(res);
-            
-        }
-    })
+    uni.navigateTo({url:'/pages/login/index'})
 }
 </script>
 <template>

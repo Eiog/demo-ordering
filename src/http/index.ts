@@ -28,7 +28,6 @@ if (process.env.NODE_ENV === 'development') {
 
 function request(url: string, data?: object | string | ArrayBuffer, method?: keyof typeof Method, option?: RequestOption) {
     return new Promise((resolve, reject) => {
-
         uni.request({
             url: BASE_URL + url,
             data: data,
