@@ -25,27 +25,9 @@
     </view>
     <view class="w-full flex flex-col gap-2 px-3 -translate-y-6 ">
       <view
-        class="w-full h-20 flex items-center gap-3 px-3 bg-white shadow shadow-md shadow-gray-200 rounded-xl"
+        class="w-full h-20"
       >
-        <view class="w-14 h-14 rounded-full overflow-hidden">
-          <image
-            class="w-full h-full"
-            src="https://unlit.oss-cn-beijing.aliyuncs.com/2022-04-30/e90fb423de7a17aaa47fb8b21663819a.jpeg?x-oss-process=style/avatar"
-            mode="aspectFill"
-          />
-        </view>
-        <view class="flex-1 flex flex-col gap-1">
-          <text class="font-bold">尊敬的用户</text>
-          <view class="w-full h-1.5 bg-gray-300 rounded-full"></view>
-          <text class="font-normal text-xs text-gray-500"
-            >会员可享[限时优惠]等多项权益</text
-          >
-        </view>
-        <view
-          class="w-16 h-7 bg-red-600 rounded-md flex items-center justify-center"
-        >
-          <text class="text-white text-xs">授权登录</text>
-        </view>
+       <user-card />
       </view>
 
       <view class="flex flex-col gap-2">
@@ -84,6 +66,7 @@ import { ref } from "vue";
 import { useAppStore } from "@/store";
 import http from "@/http";
 import UniSwiperDot from '@dcloudio/uni-ui/lib/uni-swiper-dot/uni-swiper-dot.vue'
+import UserCard from "./components/UserCard.vue";
 const swiperUrl = [
   {
     url: "https://unlit.oss-cn-beijing.aliyuncs.com/2022-04-23/4819b5566b3510e62dca55fc6eb941a5.png?x-oss-process=style/thumb",
