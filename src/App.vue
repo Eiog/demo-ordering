@@ -10,18 +10,26 @@ onHide(() => {
   console.log("App Hide");
 });
 </script>
-<style lang="scss">
-page {
-  height: 100%;
-}
-view {
-  box-sizing: border-box;
-}
-::-webkit-scrollbar {
-  display: none;
-  width: 0 !important;
-  height: 0 !important;
-  -webkit-appearance: none;
-  background: transparent;
-}
+<style>
+	/* #ifdef APP-NVUE */
+	@import './tmui/scss/nvue.css';
+	/* #endif */
+	/* #ifndef APP-NVUE */
+	@import './tmui/scss/noNvue.css';
+	/* #endif */
+
+
+	/* #ifdef H5 */
+	body::-webkit-scrollbar,
+	div::-webkit-scrollbar,
+	*::-webkit-scrollbar {
+		display: none;
+	}
+
+	body.pages-index-index uni-page-body,
+	body {
+		padding-bottom: 0 !important;
+	}
+	/* #endif */
 </style>
+
