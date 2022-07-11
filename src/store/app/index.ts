@@ -1,8 +1,13 @@
 import { defineStore } from "pinia";
+type State = {
+    userInfo?:App.User
+    token:string
+}
 export const useAppStore = defineStore({
     id: 'appStore',
-    state: () => ({
-        count:0
+    state: ():State => ({
+        userInfo:undefined,
+        token:''
     }),
     actions: {
 

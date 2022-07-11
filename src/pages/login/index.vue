@@ -1,6 +1,8 @@
 <script setup lang="ts" name="Login">
 import http from "@/http";
-
+import {userApi} from '@/api'
+import { useAppStore } from "@/store";
+const appStore = useAppStore()
 const AppID = ref("wx2e18528c7c294e28");
 const AppSecret = ref("328a4712a27c96d88eb42b5c56812eef");
 
@@ -33,11 +35,16 @@ const getOpenId = (
   });
 };
 const handleLogin = async () => {
-    const data =  await getUserProfile()
-    if(data){
-        
-    }
-    
+    const code = await getCode()
+    const {openid,session_key} = await getOpenId(AppID.value,AppSecret.value,code)
+    userApi.login(openid,session_key).then(res=>{
+      appStore.userInfo = res.userInfo
+      appStore.token = res.token
+      uni.navigateBack({ delta: 1 })
+      uni.showToast({title:'登录成功',icon:'success'})
+    }).catch(()=>{
+      uni.showToast({title:'出错啦',icon:'error'})
+    })
 };
 const getUserProfile = () => {
   return new Promise((resolve, reject) => {

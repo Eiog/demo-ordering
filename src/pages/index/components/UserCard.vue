@@ -1,5 +1,6 @@
 <script setup lang="ts" name="UserCard">
-
+import { useAppStore } from '@/store';
+const appStore = useAppStore()
 const handleLogin = ()=>{
     uni.navigateTo({url:'/pages/login/index'})
 }
@@ -11,12 +12,12 @@ const handleLogin = ()=>{
     <view class="w-14 h-14 rounded-full overflow-hidden">
       <image
         class="w-full h-full"
-        src="https://unlit.oss-cn-beijing.aliyuncs.com/2022-04-30/e90fb423de7a17aaa47fb8b21663819a.jpeg?x-oss-process=style/avatar"
+        :src="appStore.userInfo?.avatar"
         mode="aspectFill"
       />
     </view>
     <view class="flex-1 flex flex-col gap-1">
-      <text class="font-bold">尊敬的用户</text>
+      <text class="font-bold">{{appStore.userInfo?appStore.userInfo.name:'尊敬的客户'}}</text>
       <view class="w-full h-1.5 bg-gray-300 rounded-full"></view>
       <text class="font-normal text-xs text-gray-500"
         >会员可享[限时优惠]等多项权益</text
