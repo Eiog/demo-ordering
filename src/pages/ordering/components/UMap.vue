@@ -103,7 +103,7 @@ function initMap() {
   } else {
     getLocation();
   }
-  mapRef.value = uni.createMapContext("map", $this);
+  mapRef.value = uni.createMapContext("map1", $this);
   mapRef.value.addCustomLayer({
     layerId: "location-btn",
     success: (res) => {
@@ -127,10 +127,9 @@ onMounted(() => {
 });
 </script>
 <template>
-  <view class="w-full h-60">
     <map
-      id="map"
-      class="w-full h-full"
+      id="map1"
+      class="fulled fulled-height"
       :show-location="true"
       :latitude="location.latitude"
       :longitude="location.longitude"
@@ -143,6 +142,5 @@ onMounted(() => {
         <text class="i-ic-outline-my-location text-xl"></text>
       </view>
     </map>
-  </view>
 </template>
 <style scoped lang="less"></style>

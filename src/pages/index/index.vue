@@ -1,26 +1,18 @@
 <template>
-  <tm-app ref="app">
-    <tm-carousel
-      autoplay
-      :height="800"
-      model="dot"
-      color="red"
-      _class=""
-      :list="swiperUrl"
-    ></tm-carousel>
-    <tm-sheet :round="3" :shadow="2">
-    
-    </tm-sheet>
-  </tm-app>
+  <view class="w-full h-full">
+    <view class="w-full h-800rpx">
+      <image class="w-full h-full" :src="swiperUrl[1].url" mode="aspectFill" />
+    </view>
+    <view class="w-full h-120rpx px-3">
+      <user-card></user-card>
+    </view>
+  </view>
 </template>
 
 <script setup lang="ts" name="aaa">
 import { ref } from "vue";
 import { useAppStore } from "@/store";
-import http from "@/http";
 import UserCard from "./components/UserCard.vue";
-import tmApp from "@/tmui/components/tm-app/tm-app.vue";
-import tmCarousel from "@/tmui/components/tm-carousel/tm-carousel.vue";
 const swiperUrl = [
   {
     url: "https://unlit.oss-cn-beijing.aliyuncs.com/2022-04-23/4819b5566b3510e62dca55fc6eb941a5.png?x-oss-process=style/thumb",

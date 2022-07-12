@@ -72,6 +72,7 @@ const scope: Scope[] = [
     },
 
 ]
+// #ifndef H5
 for (const item of scope) {
     uni.addInterceptor(item.method, {
         invoke(res) {
@@ -94,3 +95,4 @@ for (const item of scope) {
         }
     })
 }
+// #endif
