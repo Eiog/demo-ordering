@@ -47,8 +47,8 @@ function handleOpenLocationWindow(){
 }
 </script>
 <template>
-  <view class="w-full h-full flex flex-col gap-3 bg-gray-100 pt-2">
-    <view class="w-full h-10 flex items-center">
+  <view class="w-full h-full flex flex-col bg-gray-100">
+    <view class="w-full h-10 flex items-center my-2">
       <view class="h-full flex-1">
       <u-tabs :data="tabData" v-model:index="index" @on-change="onChange" />
       </view>
@@ -59,8 +59,8 @@ function handleOpenLocationWindow(){
         <text class="text-sm leading-none">搜索店铺</text>
       </view>
     </view>
-    <view class="w-full flex flex-col bg-white">
-      <u-map v-if="mapShow" :location="location" />
+    <view class="w-full flex flex-col bg-white my-2">
+        <u-map v-if="mapShow" :location="location" />
       <view
         class="flex items-center justify-center py-2 shadow shadow-md shadow-gray-100"
         @click="mapShow = !mapShow"
@@ -68,7 +68,7 @@ function handleOpenLocationWindow(){
         <text class="text-gray-500">收起地图</text>
       </view>
     </view>
-    <view>
+    <view class="flex-1 min-h-0 my-2">
       <u-list :data="shopListData" />
     </view>
   </view>

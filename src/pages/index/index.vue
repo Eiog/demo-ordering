@@ -3,7 +3,7 @@
     <view class="w-full h-800rpx">
       <image class="w-full h-full" :src="swiperUrl[1].url" mode="aspectFill" />
     </view>
-    <view class="w-full h-120rpx px-3">
+    <view class="w-full h-140rpx px-3 -translate-y-40rpx">
       <user-card></user-card>
     </view>
   </view>

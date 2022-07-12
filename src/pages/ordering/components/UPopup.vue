@@ -40,22 +40,21 @@ watch(
 </script>
 <template>
   <view
-    class="fixed w-full h-full left-0 top-0 bg-black bg-opacity-30 opacity-0 backdrop-blur-md transition-opacity z-10"
+    class="fixed w-full h-full left-0 top-0 bg-black bg-opacity-30 backdrop-blur-sm opacity-0 invisible transition-all z-10"
     :id="props.data?.id"
-    v-if="isShow"
-    :class="bandClass ? 'opacity-100' : ''"
+    :class="props.show ? 'opacity-100 !visible' : ''"
     @click.stop="onClose($event)"
   >
     <view
-      class="fixed left-0 bottom-0 w-full rounded-t-2xl overflow-hidden bg-white scale-95 translate-y-50 transition-all"
-      :class="bandClass?'!translate-y-0 !scale-100':''"
+      class="fixed left-0 bottom-0 w-full rounded-t-2xl overflow-hidden bg-white scale-95 invisible opacity-0 translate-y-100 transition-all duration-300"
+      :class="props.show?'!translate-y-0 !scale-100 !visible !opacity-100 ':''"
     >
       <view
         class="w-full min-h-14 flex items-center px-3 bg-red-50 text-red-700 truncate"
       >
         <text class="truncate">{{ props.data?.notice }}</text>
       </view>
-      <view class="w-full flex-1 flex flex-col gap-2 px-3">
+      <view class="w-full flex-1 flex flex-col gap-2 px-3 pb-2">
         <view class="w-full flex items-center">
           <view class="flex-1 flex flex-col gap-1">
             <text class="font-bold">{{ props.data?.name }}</text>

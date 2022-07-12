@@ -129,14 +129,14 @@ onMounted(() => {
 <template>
     <map
       id="map1"
-      class="fulled fulled-height"
+      class="w-full h-400rpx relative"
       :show-location="true"
       :latitude="location.latitude"
       :longitude="location.longitude"
     >
       <view
         id="location-btn"
-        class="z-999 w-8 h-8 absolute bottom-8 right-3 rounded-full bg-white backdrop-blur-md border-opacity-60 shadow-md flex items-center justify-center"
+        class="w-8 h-8 absolute bottom-8 right-3 rounded-full bg-white backdrop-blur-md border-opacity-60 shadow-md flex items-center justify-center"
         @click="resetLocation"
       >
         <text class="i-ic-outline-my-location text-xl"></text>

@@ -18,16 +18,12 @@ div::-webkit-scrollbar,
   display: none;
 }
 
-body.pages-index-index uni-page-body,
-body {
-  padding-bottom: 0 !important;
+/* #endif */
+view,div{
+	box-sizing: border-box;
 }
 page {
   height: 100%;
   box-sizing: border-box;
 }
-view{
-	box-sizing: border-box;
-}
-/* #endif */
 </style>
