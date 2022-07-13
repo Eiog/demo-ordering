@@ -88,7 +88,7 @@ function onListScroll(index:number){
       </view>
       <ShopCard />
       <SkuSelect
-        v-if="selectShow"
+        :show="selectShow"
         @on-close="selectShow = false"
         @on-checked="handleSkuChecked"
         :data="skuSelectData"

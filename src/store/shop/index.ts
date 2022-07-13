@@ -36,8 +36,16 @@ export const useShopStore = defineStore({
                 this.shopCart?.push(data)
             }
         },
-        removeCart(){
-            
+        removeCart(item:SHOP.ShopCart){
+            const index = this.shopCart?.findIndex(val=>val===item)
+            if(this.shopCart![index!].count>1){
+                this.shopCart![index!].count--
+                return
+            }
+            this.shopCart?.splice(index!,1)
+        },
+        clearCart(){
+            this.shopCart = []
         }
     },
     getters: {

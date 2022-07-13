@@ -120,7 +120,7 @@ function handleRemove(classify:SHOP.GoodsClassify,goods:SHOP.Goods){
     <view class="w-full flex flex-col min-w-0">
       <view v-for="(item, index) in props.data" :key="index">
         <view
-          class="w-full py-2 flex items-center gap-1 anchor-title"
+          class="w-full py-2 pl-1 flex items-center gap-1 anchor-title sticky top-0 bg-gray-50 z-1"
           :id="'anchor' + item.id"
         >
           <text class="w-2 h-4 rounded-md bg-red-600"></text>
