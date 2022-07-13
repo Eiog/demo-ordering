@@ -79,17 +79,20 @@ export const useShopStore = defineStore({
         },
         count(state) {
             let count = 0
-            for (const item of state.shopCart!) {
+            for (const item of state.shopCart!.filter(item=>item.checked)) {
                 count += item.count
             }
             return count
         },
         price(state) {
             let price = 0
-            for (const item of state.shopCart!) {
+            for (const item of state.shopCart!.filter(item=>item.checked)) {
                 price += item.goods.price * item.count
             }
             return price
+        },
+        checkedCart(state){
+            return state.shopCart?.filter(item=>item.checked)
         }
     }
 })

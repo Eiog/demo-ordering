@@ -17,7 +17,6 @@ div::-webkit-scrollbar,
 *::-webkit-scrollbar {
   display: none;
 }
-
 /* #endif */
 view,div{
 	box-sizing: border-box;

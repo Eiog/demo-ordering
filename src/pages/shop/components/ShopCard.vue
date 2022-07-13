@@ -3,6 +3,13 @@ import { ref } from "vue";
 import { useShopStore } from "@/store";
 const shopStore = useShopStore();
 const cardPopupShow = ref(false);
+function handleCheckboxChange(index:number){
+  shopStore.shopCart![index].checked = !shopStore.shopCart![index].checked 
+}
+function handleSettle(){
+  if(shopStore.checkedCart!.length<1) return
+  uni.navigateTo({url:'/pages/settle/index'})
+}
 </script>
 <template>
   <view
@@ -41,6 +48,9 @@ const cardPopupShow = ref(false);
         v-for="(item, index) in shopStore.shopCart"
         :key="index"
       >
+        <view>
+          <checkbox color="red" :checked="item.checked" @click="handleCheckboxChange(index)" />
+        </view>
         <view class="w-18 h-18 rounded-md overflow-hidden">
           <image
             class="w-full h-full"
@@ -103,7 +113,8 @@ const cardPopupShow = ref(false);
       </view>
       <view
         class="w-26 h-10 flex items-center justify-center text-gray-500 leading-normal bg-gray-100 rounded-md"
-        :class="shopStore.count > 0 ? 'bg-yellow-400 text-red-600' : ''"
+        :class="shopStore.checkedCart!.length > 0 ? 'bg-yellow-400 text-red-600' : ''"
+        @click="handleSettle"
         >去结算</view
       >
     </view>

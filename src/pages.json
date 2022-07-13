@@ -40,6 +40,12 @@
 			"style":{
 				"navigationBarTitleText": "登录"
 			}
+		},
+		{
+			"path": "pages/settle/index",
+			"style":{
+				"navigationBarTitleText": "确认订单"
+			}
 		}
 	],
 	"tabBar": {

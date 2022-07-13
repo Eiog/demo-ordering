@@ -53,6 +53,7 @@ declare namespace SHOP {
         goods: Goods
         sku: Sku['items']
         count: number
+        checked:boolean
     }
     type SelectedSku = {
         

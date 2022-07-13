@@ -46,7 +46,8 @@ function handleSkuChecked(sku: SHOP.Sku["items"]) {
     goodsClassify:goodsClassify.value!,
     goods:skuSelectData.value!,
     sku:sku,
-    count:1
+    count:1,
+    checked:true
   }
   shopStore.setCart(data)
 }
