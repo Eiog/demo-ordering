@@ -33,7 +33,12 @@ function request(url: string, data?: object | string | ArrayBuffer, method?: key
             data: data,
             method: method,
             ...option,
-            success: res => { return resolve(res.data) },
+            success: res => { 
+                if(res.statusCode>=200&&res.statusCode<300){
+                    return resolve(res.data)
+                }
+                return reject(res)
+             },
             fail: err => { return reject(err) }
         })
     })

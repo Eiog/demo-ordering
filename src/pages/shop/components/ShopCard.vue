@@ -8,7 +8,7 @@ function handleCheckboxChange(index:number){
 }
 function handleSettle(){
   if(shopStore.checkedCart!.length<1) return
-  uni.navigateTo({url:'/pages/settle/index'})
+  uni.navigateTo({url:'/pages/settle/index'},true)
 }
 </script>
 <template>

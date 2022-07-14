@@ -1,6 +1,17 @@
 <script setup lang="ts">
 import { onLaunch, onShow, onHide } from "@dcloudio/uni-app";
+import {useAppStore} from '@/store'
+import { userApi } from "./api";
+const appStore = useAppStore()
 onLaunch(() => {
+  if(appStore.token){
+    userApi.status(appStore.token).then(res=>{
+      appStore.userInfo = res.userInfo
+      appStore.token = res.token
+    }).catch(()=>{
+      appStore.$reset()
+    })
+  }
   console.log("App Launch");
 });
 onShow(() => {

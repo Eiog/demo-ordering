@@ -1,3 +1,4 @@
+import { useAppStore } from '@/store';
 //request拦截器
 uni.addInterceptor('request', {
     invoke(args: UniApp.RequestOptions) {
@@ -9,15 +10,30 @@ uni.addInterceptor('request', {
         return args
     },
     success(res) {
-
-        console.log(res);
-
     },
     fail() {
 
     },
     complete() {
         uni.hideLoading()
+    }
+})
+//跳转拦截器
+const methodToPatch = ['navigateTo', 'redirectTo', 'switchTab', 'navigateBack']
+methodToPatch.map(item => {
+    const original = uni[item] // 
+    uni[item] = function (opt = {}, needAuth) {
+        const appStore = useAppStore()
+        if (needAuth && !appStore.token) { // 需要登录且未登录
+            console.log(appStore.token);
+            
+            uni.navigateTo({
+                url: '/pages/login/index'
+            })
+            uni.showToast({title:'请登录'})
+        } else {
+            return original.call(this, opt)
+        }
     }
 })
 //授权拦截器
